@@ -1,0 +1,57 @@
+﻿@page "/login"
+
+<h3>Login</h3>
+
+<section class="col-xl-12 d-flex flex-column justify-content-center w-100">
+
+    <div class="mb-5  d-flex flex-column align-items-center">
+        <div class="d-flex flex-column align-items-center">
+            <label class="form-label">Username:</label>
+            <InputText @bind-Value="Vm.Username" class="form-control" />
+        </div>
+    </div>
+
+    <div class="mb-5 w-100 d-flex flex-column align-items-center">
+        <div class="d-flex flex-column align-items-center">
+            <label class="form-label">Password:</label>
+            <InputText @bind-Value="Vm.Password" class="form-control" />
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center w-100">
+        <button class="col-xl-1 btn btn-primary" type="button" @onclick="() => LogIn()">Log In</button>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Vm.ErrorMessage))
+    {
+        <div class="alert alert-danger mt-3" role="alert">
+            @((MarkupString)Vm.ErrorMessage)
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(Vm.Hangman))
+    {
+        <div class="d-flex flex-column align-items-center w-100">
+            <pre class="fw-bold">
+                @DrawHangman(Vm.HangmanFails)
+            </pre>
+
+            <div class="fw-bold mb-3 mt-3">@Vm.HangmanProgress</div>
+
+            @if(Vm.HangmanFails < 6)
+            {
+                <div class="col-xl-1 d-flex flex-column justify-content-center mb-3">
+                    <label class="form-label">Letter:</label>
+                    <InputText @bind-Value="Vm.Letter" class="form-control" />
+                </div>
+
+                <button class="col-xl-1 btn btn-primary" type="button" @onclick="() => Guess()">Guess</button>
+            }
+            else
+            {
+                <div class="fw-bold text-danger">You died! Deleting the account...</div>
+            }
+        </div>
+    }
+
+</section>

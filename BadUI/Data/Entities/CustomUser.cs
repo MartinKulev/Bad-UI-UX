@@ -1,0 +1,13 @@
+﻿namespace BadUI.Data.Entities
+{
+    public class CustomUser
+    {
+        public int Id { get; set; }
+
+        public string Username { get; set; }
+
+        public string Password { get; set; }
+
+        public int Gender { get; set; }
+    }
+}

@@ -1,0 +1,50 @@
+﻿@page "/register"
+
+<h3>Register</h3>
+
+<section class="col-xl-12 d-flex flex-column justify-content-center w-100">
+
+    <div class="mb-5 mt-5 w-100 d-flex flex-column align-items-center">
+        <div class="d-flex flex-column align-items-center">
+            <label class="form-label">Username:</label>
+            <InputText @bind-Value="Vm.Username" class="form-control" />
+        </div>
+    </div>
+
+    <div class="mb-5 w-100 d-flex flex-column align-items-center">
+        <div class="d-flex flex-column align-items-center">
+            <label class="form-label">Password:</label>
+            <InputText @bind-Value="Vm.Password" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-12 d-flex justify-content-center w-100">
+            <div class="form-check form-check-inline d-flex flex-column align-items-center">
+                <label for="genderRange" class="form-label">Gender</label>
+                <div class="d-flex align-items-center">
+                    <span class="me-2">Male</span>
+                    <input type="range" id="genderRange" @bind-value="Vm.Gender" class="form-range" min="1" max="100" style="width: 300px;" oninput="updateGenderValue(this.value)" />
+                    <span class="ms-2">Female</span>
+                </div>
+                <span id="genderValue" class="mt-2 fw-bold">50</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center w-100">
+        <button class="col-xl-1 btn btn-primary" type="button" @onclick="() => RegisterIn()">Register</button>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Vm.ErrorMessage))
+    {
+        <div class="alert alert-danger mt-3" role="alert">
+             @((MarkupString)Vm.ErrorMessage)
+        </div>
+    }
+</section>
+<script>
+    function updateGenderValue(value) {
+        document.getElementById("genderValue").textContent = value;
+    }
+</script>

@@ -9,6 +9,8 @@ namespace BadUI.Services
 
         Task<StatusDto> Login(string username, string password);
 
+        Task<CustomUser> LoginAsRandomUser();
+
         Task<CustomUser> GetCustomUser(string username);
 
         Task DeleteUser(string username);

@@ -11,15 +11,10 @@
             <label for="genderRange" class="form-label">Your Gender:</label>
             <div class="d-flex align-items-center">
                 <span class="me-2">Male</span>
-                <input type="range" id="genderRange" @bind-value="Vm.Gender" class="form-range" min="1" max="100" style="width: 300px;" oninput="updateGenderValue(this.value)" />
+                <input type="range" id="genderRange" @bind-value="Vm.Gender" class="form-range" min="1" max="100" style="width: 300px;" disabled/>
                 <span class="ms-2">Female</span>
             </div>
             <span id="genderValue" class="mt-2 fw-bold">@Vm.Gender</span>
         </div>
     </div>
 </div>
-<script>
-    function updateGenderValue(value) {
-        document.getElementById("genderValue").textContent = value;
-    }
-</script>

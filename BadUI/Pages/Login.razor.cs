@@ -1,4 +1,5 @@
 ﻿using BadUI.Data.Dtos;
+using BadUI.Data.Entities;
 using BadUI.Data.ViewModels;
 using BadUI.Services;
 using Microsoft.AspNetCore.Components;
@@ -35,6 +36,15 @@ namespace BadUI.Pages
             {
                 NavigationManager.NavigateTo($"/profile?username={Vm.Username}");
             }
+        }
+
+        public async Task LogInAsRandomUser()
+        {
+            CustomUser customUser = await BadUIService.LoginAsRandomUser();
+            Vm.SuccessMessage = $"Logining in as random user <b>{customUser.Username}</b> ...";
+            await InvokeAsync(StateHasChanged);
+            Task.Delay(2000).Wait();
+            NavigationManager.NavigateTo($"/profile?username={customUser.Username}");  
         }
 
         public void Guess()

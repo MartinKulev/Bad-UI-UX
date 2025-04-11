@@ -107,6 +107,14 @@ namespace BadUI.Services
             return new StatusDto();
         }
 
+        public async Task<CustomUser> LoginAsRandomUser()
+        {
+            List<CustomUser> customUsers = await _context.Users.ToListAsync();
+            Random random = new Random();
+            CustomUser customUser = customUsers[random.Next(0, customUsers.Count)];
+            return customUser;
+        }
+
         public async Task<CustomUser> GetCustomUser(string username)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
